@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes grow {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+.animate-grow {
+  animation: grow 4s linear infinite;
+}
+
+.transform {
+  transform-origin: center;
+}
+
+.rotate-y-90 {
+  transform: rotateY(150deg);
+}
+
+@keyframes wave-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.path {
+  stroke: #a6a6f0;
+  stroke-width: 2;
+  fill: none;
+  stroke-dasharray: 100;
+  stroke-dashoffset: 500;
+  animation: dash 2s linear infinite;
+}
