@@ -42,7 +42,16 @@
   stroke: #a6a6f0;
   stroke-width: 2;
   fill: none;
-  stroke-dasharray: 100;
+  stroke-dasharray: 10;
   stroke-dashoffset: 500;
-  animation: dash 2s linear infinite;
+  animation: dash 30s linear infinite;
+  animation-direction: normal; /* default is normal, set to reverse for right-to-left animation */
+}
+
+.hidden {
+  display: none;
+}
+
+.visible {
+  display: block;
 }

@@ -23,48 +23,108 @@ const CardContainer = () => {
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentPath, setCurrentPath] = useState(0);
   const gap = 60;
 
   useEffect(() => {
-    const interval = setInterval(() => {
+    const cardInterval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % cardsData.length);
     }, 2000);
 
-    return () => clearInterval(interval);
+    return () => clearInterval(cardInterval);
   }, [cardsData.length]);
 
+  useEffect(() => {
+    const pathInterval = setInterval(() => {
+      setCurrentPath((prevPath) => (prevPath + 1) % 4);
+    }, 2000);
+
+    return () => clearInterval(pathInterval);
+  }, []);
+
   return (
-    <div className="grid grid-cols-2 items-center justify-center min-h-screen ">
+    <div className="grid grid-cols-2 items-center px-32 justify-center min-h-screen">
       <div>
         <h1 className="text-6xl">
           Access to carefully crafted materials authored by examiners
+          {currentPath}
         </h1>
       </div>
-      <div className="relative flex  justify-center h-[60%]">
+      <div className="relative flex justify-center h-[60%]">
         <div className="relative w-full h-full">
-          <img className="w-6 absolute left-0" src={icon} alt="" />
-          <svg className="timeline absolute w-full h-full">
+          <img
+            className={`w-6 absolute left-0 transition-all duration-1000 ${
+              currentPath == 0 ? "opacity-100" : "opacity-10"
+            }`}
+            src={icon}
+            alt=""
+          />
+          <svg
+            className={`timeline absolute w-full h-full transition-all duration-1000 ${
+              currentPath === 0 ? "opacity-100" : "opacity-0"
+            }`}
+          >
             <path
               className="path"
-              d="M10 20 L10 100 Q10 150 60 150 L100 150 "
+              d="M10 20 L10 100 Q10 150 60 150 L100 150 Q150 150 150 200"
+              style={{ animationDirection: "normal" }}
             />
           </svg>
-          <img className="w-6 absolute right-0" src={icon} alt="" />
-          <svg className="timeline absolute h-full right-0">
-            <path className="path" d="M290 20 L290 100 Q290 150 240 150 " />
+          <img
+            className={`w-6 absolute right-0 transition-all duration-1000 ${
+              currentPath == 1 ? "opacity-100" : "opacity-10"
+            }`}
+            src={icon}
+            alt=""
+          />
+          <svg
+            className={`timeline absolute h-full right-0 transition-all duration-1000 ${
+              currentPath === 1 ? "opacity-100" : "opacity-0"
+            }`}
+          >
+            <path
+              className="path"
+              d="M290 20 L290 100 Q290 150 240 150 L200 150 Q150 150 150 200"
+              style={{ animationDirection: "reverse" }}
+            />
           </svg>
         </div>
 
-        <div className="absolute  w-full h-full rotate-180">
-          <img className="w-6 absolute left-0" src={icon} alt="" />
-          <svg className="timeline absolute  w-full h-full">
-            <path className="path" d="M10 20 L10 100 Q10 150 60 150 L100 150" />
-          </svg>
-          <img className="w-6 absolute right-0" src={icon} alt="" />
-          <svg className=" absolute h-full   right-0">
+        <div className="absolute w-full h-full rotate-180">
+          <img
+            className={`w-6 absolute left-0 transition-all duration-1000 ${
+              currentPath == 2 ? "opacity-100" : "opacity-10"
+            }`}
+            src={icon}
+            alt=""
+          />
+          <svg
+            className={`timeline absolute w-full h-full transition-all duration-1000 ${
+              currentPath === 2 ? "opacity-100" : "opacity-0"
+            }`}
+          >
             <path
               className="path"
-              d="M290 20 L290 100 Q290 150 240 150 L200 150"
+              d="M10 20 L10 100 Q10 150 60 150 L100 150 Q150 150 150 200"
+              style={{ animationDirection: "reverse" }}
+            />
+          </svg>
+          <img
+            className={`w-6 absolute right-0 transition-all duration-1000 ${
+              currentPath == 3 ? "opacity-100" : "opacity-10"
+            }`}
+            src={icon}
+            alt=""
+          />
+          <svg
+            className={`absolute h-full transition-all duration-1000 right-0 ${
+              currentPath === 3 ? "opacity-100" : "opacity-0"
+            }`}
+          >
+            <path
+              className="path"
+              d="M290 20 L290 100 Q290 150 240 150 L200 150 Q150 150 150 200"
+              style={{ animationDirection: "normal" }}
             />
           </svg>
         </div>
